@@ -1,0 +1,144 @@
+                                                  Automation Testing Selenium with Python
+ Project  Structure:-
+** Pages **
+Home_page.py                                                                                                                         
+Signup_page.py                                                                                                                
+Login_page.py                                                                                                                 
+Product_page.py                                                                                                                                 
+Cart_page.py                                                                                                                                      
+Checkout_page.py
+
+   **Tests**
+test_signup.py                                                                                                                        
+test_login.py
+
+**Test _product_browsing.py
+test_cart.py                                                                                                                              
+test_checkout.py      
+test_logout.py
+
+    ** Reports**
+      Report.html
+
+
+
+1.	Test Case Signup Tests
+                                                                                                                                                                                                                                                                                                                                                                                            
+import pytest                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        import pytest
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import options 
+def test_signup_valid(driver):
+    driver.find_element(By.ID, "signin2").click()
+    driver.find_element(By.ID, "sign-username").send_keys("Demo")
+    driver.find_element(By.ID, "sign-password").send_keys("Pass123")
+    driver.find_element(By.CSS_SELECTOR, ".btn-primary").click()
+    
+
+def test_signup_invalid(driver):
+    driver.find_element(By.ID, "signin2").click()
+    driver.find_element(By.ID, "sign-username").send_keys("")
+    driver.find_element(By.ID, "sign-password").send_keys("")
+    driver.find_element(By.CSS_SELECTOR, ".btn-primary").click()
+
+
+
+2 .Test Cases:- Login
+
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+
+def driver():
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    service = (Service= service (executable_path=”E:\Downloads\/chromedriver.exe”))
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+    driver.get("https://www.demoblaze.com/")
+    yield driver
+    driver.quit()
+
+def test_login_valid(driver):
+
+    driver.find_element(By.ID, "login2").click()
+    driver.find_element(By.ID, "loginusername").send_keys("validUser")
+    driver.find_element(By.ID, "loginpassword").send_keys("validPass")
+    driver.find_element(By.CSS_SELECTOR, ".btn-primary").click()
+    
+
+
+
+
+
+def test_login_invalid(driver):
+
+ driver.find_element(By.ID, "login2").click()
+ driver.find_element(By.ID, "loginusername").send_keys("invalidUser”) 
+ driver.find_element(By.ID, "loginpassword").send_keys("invalidPass")                  
+ driver.find_element(By.CSS_SELECTOR, ".btn-primary").click()
+
+      
+      
+      3	Test Cases  Add product to cart
+
+
+
+    def test_add_product_to_cart(driver):
+    driver.find_element(By.LINK_TEXT, "Phones").click()
+    driver.find_element(By.CSS_SELECTOR, ".next").click()
+    driver.find_element(By.CSS_SELECTOR, ".card").click()
+    driver.find_element(By.CSS_SELECTOR, ".btn-success").click()
+    
+
+def test_checkout_empty_cart(driver):
+    driver.find_element(By.LINK_TEXT, "Cart").click()
+    driver.find_element(By.CSS_SELECTOR, ".btn-success").click()
+
+
+
+
+
+4. Test Product Browsing
+
+
+
+def test_product_display(driver):
+    # Check if products are displayed on the homepage
+    assert len(driver.find_elements(By.CSS_SELECTOR, ".card")) > 0
+
+def test_category_navigation(driver):
+    driver.find_element(By.LINK_TEXT, "Phones").click()
+    assert "Phones" in driver.title
+    	
+   
+ 5. Test Case Checkout
+
+
+
+   def test_checkout_valid(driver):
+    driver.find_element(By.LINK_TEXT, "Cart").click()
+    driver.find_element(By.CSS_SELECTOR, ".btn-success").click()
+    
+    def test_checkout_no_items(driver):
+    driver.find_element(By.LINK_TEXT, "Cart").click()
+    driver.find_element(By.CSS_SELECTOR, ".btn-success").click()
+    
+
+
+
+6. Test Cases logout
+
+
+def test_logout(driver):
+    driver.find_element(By.ID, "login2").click()
+    driver.find_element(By.ID, "loginusername").send_keys("validUser")
+    driver.find_element(By.ID, "loginpassword").send_keys("validPass")
+    driver.find_element(By.CSS_SELECTOR, ".btn-primary").click()
+    driver.find_element(By.ID, "logout2").click()
+    
+
+
+
+                             
+ 
